@@ -10,7 +10,7 @@ import math
 # TOKEN = os.getenv("GITHUB_TOKEN")
 # --------------------------------------------------
 
-TOKEN = os.getenv("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")
+TOKEN = os.getenv("GITHUB_TOKEN")
 HEADERS = {
     "Accept": "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28"
