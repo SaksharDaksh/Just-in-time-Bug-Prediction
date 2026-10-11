@@ -7,7 +7,6 @@ import {
   GitPullRequest,
   Brain,
   Sparkles,
-  GraduationCap,
 } from "lucide-react";
 
 export default function AboutPage() {
@@ -50,12 +49,12 @@ export default function AboutPage() {
     {
       icon: Database,
       title: "Dataset",
-      text: "Trained on ApacheJIT : 106,674 commits across 14 Apache open-source projects (2003–2019), with commit-level code, historical, and developer-experience metrics.",
+      text: "Trained on ApacheJIT: 106,674 commits across 14 Apache open-source projects (2003–2019), with commit-level code, historical, and developer-experience metrics.",
     },
     {
       icon: GitBranch,
       title: "Preprocessing",
-      text: "Chronological train/test split, SMOTE oversampling for class imbalance, and feature scaling , all applied without leaking future data into training.",
+      text: "Chronological train/test split, SMOTE oversampling for class imbalance, and feature scaling, all applied without leaking future data into training.",
     },
     {
       icon: Brain,
@@ -65,13 +64,8 @@ export default function AboutPage() {
     {
       icon: Sparkles,
       title: "Explainability",
-      text: "SHAP is used to surface the top features behind every prediction, so results aren't just a risk score, they come with a reason.",
+      text: "SHAP is used to surface the top features behind every prediction, so results aren't just a risk score; they come with a reason.",
     },
-  ];
-
-  const team = [
-    { name: "Parv Chaturvedi", id: "BTECH/10408/23" },
-    { name: "Sakshar Daksh", id: "BTECH/10422/23" },
   ];
 
   return (
@@ -128,7 +122,7 @@ export default function AboutPage() {
 
             <p className="text-gray-400 leading-relaxed">
               Traditional defect prediction operates at the file or
-              module level and often flags risk too late after code
+              module level and often flags risk too late, after code
               has already reached the main branch. Just-In-Time
               prediction instead evaluates a pull request at the exact
               moment it's proposed, using the size and shape of its
@@ -153,10 +147,15 @@ export default function AboutPage() {
                 key={step.title}
                 className="bg-white/5 border border-white/10 rounded-2xl p-8"
               >
-                <step.icon className="text-indigo-400 mb-4" size={26} />
+                <step.icon
+                  className="text-indigo-400 mb-4"
+                  size={26}
+                />
+
                 <h3 className="text-white text-xl font-semibold mb-2">
                   {step.title}
                 </h3>
+
                 <p className="text-gray-400 leading-relaxed">
                   {step.text}
                 </p>
@@ -171,7 +170,11 @@ export default function AboutPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="bg-white/5 border border-white/10 rounded-3xl p-10">
             <div className="flex items-center gap-3 mb-6">
-              <GitPullRequest className="text-indigo-400" size={28} />
+              <GitPullRequest
+                className="text-indigo-400"
+                size={28}
+              />
+
               <h2 className="text-white text-3xl font-bold">
                 From Pull Request to Merge Decision
               </h2>
@@ -179,7 +182,7 @@ export default function AboutPage() {
 
             <p className="text-gray-400 leading-relaxed mb-6">
               The deployed app doesn't just analyze a repository in
-              general, it studies one specific pull request. Paste
+              general; it studies one specific pull request. Paste
               its GitHub link, and the app fetches that PR's real
               diff (lines changed, files touched, how scattered the
               change is), runs it through XGBoost, and returns a risk
@@ -191,6 +194,7 @@ export default function AboutPage() {
                 <p className="text-green-400 font-semibold mb-1">
                   Low / No Risk
                 </p>
+
                 <p className="text-gray-400 text-sm">
                   The app flags the PR as safe to merge, and links
                   straight to it on GitHub.
@@ -201,6 +205,7 @@ export default function AboutPage() {
                 <p className="text-yellow-400 font-semibold mb-1">
                   Medium / High Risk
                 </p>
+
                 <p className="text-gray-400 text-sm">
                   The app recommends review before merging, and shows
                   which features drove the risk score.
@@ -217,6 +222,7 @@ export default function AboutPage() {
           <h2 className="text-white text-3xl font-bold text-center mb-4">
             Model Performance
           </h2>
+
           <p className="text-gray-400 text-center mb-12">
             Three models were trained and compared on the same
             time-aware split of the ApacheJIT dataset.
@@ -227,13 +233,24 @@ export default function AboutPage() {
               <table className="w-full text-left">
                 <thead>
                   <tr className="border-b border-white/10 text-gray-400 text-sm uppercase tracking-wide">
-                    <th className="px-6 py-4 font-medium">Model</th>
-                    <th className="px-6 py-4 font-medium">Accuracy</th>
-                    <th className="px-6 py-4 font-medium">Recall</th>
-                    <th className="px-6 py-4 font-medium">F1 Score</th>
-                    <th className="px-6 py-4 font-medium">ROC-AUC</th>
+                    <th className="px-6 py-4 font-medium">
+                      Model
+                    </th>
+                    <th className="px-6 py-4 font-medium">
+                      Accuracy
+                    </th>
+                    <th className="px-6 py-4 font-medium">
+                      Recall
+                    </th>
+                    <th className="px-6 py-4 font-medium">
+                      F1 Score
+                    </th>
+                    <th className="px-6 py-4 font-medium">
+                      ROC-AUC
+                    </th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {modelResults.map((m) => (
                     <tr
@@ -246,6 +263,7 @@ export default function AboutPage() {
                         <div className="text-white font-semibold">
                           {m.name}
                         </div>
+
                         <div
                           className={`text-xs mt-0.5 ${
                             m.highlight
@@ -256,15 +274,19 @@ export default function AboutPage() {
                           {m.role}
                         </div>
                       </td>
+
                       <td className="px-6 py-4 text-gray-300">
                         {m.accuracy}
                       </td>
+
                       <td className="px-6 py-4 text-gray-300">
                         {m.recall}
                       </td>
+
                       <td className="px-6 py-4 text-gray-300">
                         {m.f1}
                       </td>
+
                       <td className="px-6 py-4 text-gray-300">
                         {m.auc}
                       </td>
@@ -282,44 +304,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team & supervisor */}
-      <section className="pb-32">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-10">
-            <div className="flex items-center gap-3 mb-8">
-              <GraduationCap className="text-indigo-400" size={28} />
-              <h2 className="text-white text-3xl font-bold">
-                The Team
-              </h2>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6 mb-8">
-              {team.map((member) => (
-                <div
-                  key={member.name}
-                  className="bg-slate-900 border border-slate-800 rounded-2xl p-6"
-                >
-                  <div className="text-white font-semibold text-lg">
-                    {member.name}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <p className="text-gray-400 leading-relaxed">
-              This project was carried out as a 2-Credit Summer
-              Research Project in the Department of Computer Science
-              &amp; Engineering, Birla Institute of Technology, Mesra,
-              under the supervision of{" "}
-              <span className="text-white font-medium">
-                Dr. Kumar Rajnish
-              </span>
-              .
-            </p>
-          </div>
-        </div>
-      </section>
-
+      {/* Footer */}
       <Footer />
     </div>
   );
