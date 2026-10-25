@@ -43,19 +43,6 @@ Software defects introduced during development significantly increase maintenanc
 
 This project was carried out as a **2-Credit Summer Research Project** under the supervision of **Dr. Kumar Rajnish**, Department of Computer Science & Engineering, Birla Institute of Technology, Mesra.
 
----
-
-## Project Information
-
-| Field         | Details                              |
-| ------------- | ------------------------------------ |
-| Project Title | Just-In-Time Software Bug Prediction |
-| Student       | Parv Chaturvedi (BTECH/10408/23)     |
-| Department    | Computer Science & Engineering       |
-| Institute     | Birla Institute of Technology, Mesra |
-| Supervisor    | Dr. Kumar Rajnish                    |
-| Project Type  | Summer Research Project              |
-| Credits       | 2                                    |
 
 ---
 
@@ -441,12 +428,6 @@ XGBoost offered the strongest overall balance of accuracy, precision, and F1 sco
 4. ApacheJIT Dataset: https://zenodo.org/records/5907002
 
 ---
-
-## Supervisor
-
-**Dr. Kumar Rajnish**
-
-Department of Computer Science & Engineering
 
 Birla Institute of Technology, Mesra
 
