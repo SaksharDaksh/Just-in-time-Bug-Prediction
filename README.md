@@ -41,7 +41,7 @@ Software defects introduced during development significantly increase maintenanc
 
 **Just-In-Time (JIT) Bug Prediction** addresses this by evaluating a pull request at the exact moment someone is deciding whether to merge it. Rather than flagging risk after the fact, the tool studies the pull request's actual diff and returns a risk level with a clear merge recommendation, so reviewers can act *before* the change ships.
 
-This project was carried out as a **2-Credit Summer Research Project** under the supervision of **Dr. Kumar Rajnish**, Department of Computer Science & Engineering, Birla Institute of Technology, Mesra.
+
 
 
 ---
