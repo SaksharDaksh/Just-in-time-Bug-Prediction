@@ -26,10 +26,10 @@
 
 ## Live Demo
 
-| Component | Platform | Link |
-| --------- | -------- | ---- |
-| Frontend  | Vercel   | [jit-bug-prediction.vercel.app](https://jit-bug-prediction.vercel.app) |
-| Backend API | Render | [jit-bug-prediction-1.onrender.com](https://jit-bug-prediction-1.onrender.com) |
+| Component   | Platform | Link                                                                           |
+| ----------- | -------- | ------------------------------------------------------------------------------ |
+| Frontend    | Vercel   | [jit-bug-prediction.vercel.app](https://jit-bug-prediction.vercel.app)         |
+| Backend API | Render   | [jit-bug-prediction-1.onrender.com](https://jit-bug-prediction-1.onrender.com) |
 
 Paste a **GitHub pull request URL** — not just a repository — to get a real-time merge-risk assessment for that exact set of proposed changes, powered by the XGBoost model.
 
@@ -41,8 +41,7 @@ Software defects introduced during development significantly increase maintenanc
 
 **Just-In-Time (JIT) Bug Prediction** addresses this by evaluating a pull request at the exact moment someone is deciding whether to merge it. Rather than flagging risk after the fact, the tool studies the pull request's actual diff and returns a risk level with a clear merge recommendation, so reviewers can act *before* the change ships.
 
-
-
+This project was carried out as a Summer Research Project at the Department of Computer Science & Engineering, Birla Institute of Technology, Mesra.
 
 ---
 
@@ -50,11 +49,11 @@ Software defects introduced during development significantly increase maintenanc
 
 Software bugs are among the primary causes of software failures and maintenance overhead. Detecting defect-inducing changes at the pull request stage — before they're merged — enables:
 
-* Improved software quality
-* Reduced debugging effort
-* Faster, more focused code review
-* Lower maintenance costs
-* More reliable software releases
+- Improved software quality
+- Reduced debugging effort
+- Faster, more focused code review
+- Lower maintenance costs
+- More reliable software releases
 
 The objective of this project was to build machine learning models capable of identifying potentially buggy changes using commit/PR-level software metrics, and to deploy the best-performing model as a pull-request-aware web application that gives a clear merge recommendation.
 
@@ -67,16 +66,16 @@ The objective of this project was to build machine learning models capable of id
 The models are trained on ApacheJIT, a widely used benchmark dataset for Just-In-Time defect prediction research.
 
 | Property             | Value                          |
-| --------------------- | ------------------------------- |
-| Dataset Name          | ApacheJIT                      |
-| Total Commits         | 106,674                        |
-| Bug-Inducing Commits  | 28,239                         |
-| Clean Commits         | 78,435                         |
-| Projects              | 14 Apache Open Source Projects |
-| Time Period           | 2003–2019                      |
-| Source                | Zenodo Repository              |
+| -------------------- | ------------------------------ |
+| Dataset Name         | ApacheJIT                      |
+| Total Commits        | 106,674                        |
+| Bug-Inducing Commits | 28,239                         |
+| Clean Commits        | 78,435                         |
+| Projects             | 14 Apache Open Source Projects |
+| Time Period          | 2003–2019                      |
+| Source               | Zenodo Repository              |
 
-Dataset Source: https://zenodo.org/records/5907002
+Dataset Source: <https://zenodo.org/records/5907002>
 
 ---
 
@@ -84,19 +83,19 @@ Dataset Source: https://zenodo.org/records/5907002
 
 ### Code Change Metrics (computed live from each pull request's diff)
 
-| Feature | Description                    |
-| ------- | -------------------------------- |
-| LA      | Lines Added                    |
-| LD      | Lines Deleted                  |
-| NF      | Number of Modified Files       |
-| ND      | Number of Modified Directories |
-| NS      | Number of Modified Subsystems  |
+| Feature | Description                                                   |
+| ------- | ------------------------------------------------------------- |
+| LA      | Lines Added                                                   |
+| LD      | Lines Deleted                                                 |
+| NF      | Number of Modified Files                                      |
+| ND      | Number of Modified Directories                                |
+| NS      | Number of Modified Subsystems                                 |
 | ENT     | Entropy of Changes (how scattered the change is across files) |
 
 ### Historical & Developer Experience Metrics (currently dataset averages — see [Known Limitations](#known-limitations))
 
 | Feature | Description                                 |
-| ------- | -------------------------------------------- |
+| ------- | ------------------------------------------- |
 | NDEV    | Number of Developers Who Modified the Files |
 | AGE     | Average Time Between Changes                |
 | NUC     | Number of Unique Changes                    |
@@ -106,21 +105,21 @@ Dataset Source: https://zenodo.org/records/5907002
 
 ### Target Variable
 
-| Variable | Description                                |
-| -------- | -------------------------------------------- |
+| Variable | Description                               |
+| -------- | ----------------------------------------- |
 | BUGGY    | 1 = Bug-Inducing Change, 0 = Clean Change |
 
 ---
 
 ## Data Preprocessing
 
-* Removal of non-predictive identifier columns
-* Feature selection for software metrics
-* Time-aware chronological sorting
-* Chronological train-test split (80:20)
-* Class imbalance handling using SMOTE
-* Feature normalization using StandardScaler (for Logistic Regression)
-* Prevention of data leakage by applying transformations only on training data
+- Removal of non-predictive identifier columns
+- Feature selection for software metrics
+- Time-aware chronological sorting
+- Chronological train-test split (80:20)
+- Class imbalance handling using SMOTE
+- Feature normalization using StandardScaler (for Logistic Regression)
+- Prevention of data leakage by applying transformations only on training data
 
 ---
 
@@ -195,20 +194,20 @@ Pull-Request-Based Web Application
 
 ## Model Comparison
 
-| Metric    | Logistic Regression | Random Forest | XGBoost |
-| --------- | -------------------- | -------------- | ------- |
-| Accuracy  | 69.24%               | 68.18%         | **72.16%** |
-| Precision | 30.46%                | 31.57%         | **33.95%** |
-| Recall    | 68.64%                | **80.97%**     | 74.23%  |
-| F1 Score  | 42.19%                | 45.43%         | **46.59%** |
-| ROC-AUC   | 0.7612                | **0.8084**     | 0.8031  |
+| Metric    | Logistic Regression | Random Forest | XGBoost    |
+| --------- | ------------------- | ------------- | ---------- |
+| Accuracy  | 69.24%              | 68.18%        | **72.16%** |
+| Precision | 30.46%              | 31.57%        | **33.95%** |
+| Recall    | 68.64%              | **80.97%**    | 74.23%     |
+| F1 Score  | 42.19%              | 45.43%        | **46.59%** |
+| ROC-AUC   | 0.7612              | **0.8084**    | 0.8031     |
 
 ### Key Findings
 
-* Random Forest achieves the highest Recall and ROC-AUC — best when minimizing missed defects is the top priority.
-* XGBoost achieves the highest Accuracy, Precision, and F1 Score — the best overall balance, and the model selected for deployment.
-* Both ensemble methods clearly outperform the Logistic Regression baseline.
-* Only XGBoost is currently wired into the live application; Random Forest and Logistic Regression remain trained but unused in production (see [Future Work](#future-work)).
+- Random Forest achieves the highest Recall and ROC-AUC — best when minimizing missed defects is the top priority.
+- XGBoost achieves the highest Accuracy, Precision, and F1 Score — the best overall balance, and the model selected for deployment.
+- Both ensemble methods clearly outperform the Logistic Regression baseline.
+- Only XGBoost is currently wired into the live application; Random Forest and Logistic Regression remain trained but unused in production (see [Future Work](#future-work)).
 
 ---
 
@@ -219,12 +218,12 @@ SHAP (SHapley Additive exPlanations) is used to interpret XGBoost's predictions,
 ### Global Feature Importance (Mean SHAP Value)
 
 | Rank | Feature                | Mean SHAP Value |
-| ---- | ------------------------ | ------------------ |
-| 1    | LA (Lines Added)        | 0.9872              |
-| 2    | ENT (Entropy)           | 0.4948              |
-| 3    | NF (Modified Files)     | 0.3697              |
-| 4    | AGE                      | 0.2908              |
-| 5    | ASEXP (Subsystem Exp.)  | 0.2710              |
+| ---- | ---------------------- | --------------- |
+| 1    | LA (Lines Added)       | 0.9872          |
+| 2    | ENT (Entropy)          | 0.4948          |
+| 3    | NF (Modified Files)    | 0.3697          |
+| 4    | AGE                    | 0.2908          |
+| 5    | ASEXP (Subsystem Exp.) | 0.2710          |
 
 The most influential factors associated with defect-inducing changes are large code additions, highly scattered modifications, changes touching many files, older files, and lower subsystem experience — consistent with prior software engineering literature on defect prediction.
 
@@ -259,10 +258,10 @@ The most influential factors associated with defect-inducing changes are large c
 
 ## Known Limitations
 
-* **Partial live data.** Of the 12 model features, 6 (`LA, LD, NF, ND, NS, ENT`) are computed from the pull request's real diff. The remaining 6 (`NDEV, AGE, NUC, AEXP, AREXP, ASEXP`) are currently dataset-wide averages rather than values specific to the PR, author, or repository, since the GitHub API doesn't expose these cheaply. This means the risk score is only partly personalized to the specific PR being analyzed.
-* **Only one of three trained models is deployed.** Random Forest and Logistic Regression are trained and evaluated but not currently used in the live prediction endpoint.
-* **No CI / review status shown.** The app does not yet surface whether a PR's checks are passing, whether it has merge conflicts, or whether it already has human reviewer approval — all of which matter for a real merge decision alongside the model's score.
-* **Rate limits.** GitHub API requests are limited to 60/hour unauthenticated, or 5,000/hour with a `GITHUB_TOKEN` configured on the backend.
+- **Partial live data.** Of the 12 model features, 6 (`LA, LD, NF, ND, NS, ENT`) are computed from the pull request's real diff. The remaining 6 (`NDEV, AGE, NUC, AEXP, AREXP, ASEXP`) are currently dataset-wide averages rather than values specific to the PR, author, or repository, since the GitHub API doesn't expose these cheaply. This means the risk score is only partly personalized to the specific PR being analyzed.
+- **Only one of three trained models is deployed.** Random Forest and Logistic Regression are trained and evaluated but not currently used in the live prediction endpoint.
+- **No CI / review status shown.** The app does not yet surface whether a PR's checks are passing, whether it has merge conflicts, or whether it already has human reviewer approval — all of which matter for a real merge decision alongside the model's score.
+- **Rate limits.** GitHub API requests are limited to 60/hour unauthenticated, or 5,000/hour with a `GITHUB_TOKEN` configured on the backend.
 
 ---
 
@@ -321,21 +320,21 @@ jit-bug-prediction/
 
 ## Technology Stack
 
-| Category              | Tools                            |
-| ---------------------- | ----------------------------------- |
-| Programming Language  | Python, JavaScript                 |
-| ML Development         | Google Colab                       |
-| Data Processing        | Pandas, NumPy                      |
-| Machine Learning       | Scikit-Learn, XGBoost, Imbalanced-Learn |
-| Explainability          | SHAP                                |
-| Visualization           | Matplotlib, Seaborn                |
-| Model Persistence      | Joblib                              |
-| Backend Framework      | Flask, Flask-CORS                   |
-| Frontend Framework     | React, Vite, Tailwind CSS           |
-| Backend Hosting        | Render                              |
-| Frontend Hosting       | Vercel                              |
-| External API            | GitHub REST API (Pull Requests)     |
-| Version Control         | Git & GitHub                        |
+| Category             | Tools                                   |
+| -------------------- | --------------------------------------- |
+| Programming Language | Python, JavaScript                      |
+| ML Development       | Google Colab                            |
+| Data Processing      | Pandas, NumPy                           |
+| Machine Learning     | Scikit-Learn, XGBoost, Imbalanced-Learn |
+| Explainability       | SHAP                                    |
+| Visualization        | Matplotlib, Seaborn                     |
+| Model Persistence    | Joblib                                  |
+| Backend Framework    | Flask, Flask-CORS                       |
+| Frontend Framework   | React, Vite, Tailwind CSS               |
+| Backend Hosting      | Render                                  |
+| Frontend Hosting     | Vercel                                  |
+| External API         | GitHub REST API (Pull Requests)         |
+| Version Control      | Git & GitHub                            |
 
 ---
 
@@ -387,7 +386,7 @@ npm run dev
 
 ### Example Usage
 
-```
+```text
 Input:  https://github.com/facebook/react/pull/1234
 Output: Risk Level, Bug Probability, Safe-to-Merge Recommendation,
         Top SHAP Features, Pull Request Details
@@ -411,12 +410,12 @@ XGBoost offered the strongest overall balance of accuracy, precision, and F1 sco
 
 ## Future Work
 
-* Replace dataset-average features (`NDEV, AGE, NUC, AEXP, AREXP, ASEXP`) with real values computed from GitHub's per-file and per-author commit history
-* Surface all three trained models (or an agreement-based confidence score) in the UI instead of XGBoost alone
-* Show CI check status, merge conflicts, and reviewer approval alongside the model's risk score
-* Add caching to avoid re-analyzing the same pull request repeatedly
-* Support batch analysis of multiple pull requests
-* Add user authentication and prediction history tracking
+- Replace dataset-average features (`NDEV, AGE, NUC, AEXP, AREXP, ASEXP`) with real values computed from GitHub's per-file and per-author commit history
+- Surface all three trained models (or an agreement-based confidence score) in the UI instead of XGBoost alone
+- Show CI check status, merge conflicts, and reviewer approval alongside the model's risk score
+- Add caching to avoid re-analyzing the same pull request repeatedly
+- Support batch analysis of multiple pull requests
+- Add user authentication and prediction history tracking
 
 ---
 
@@ -425,11 +424,7 @@ XGBoost offered the strongest overall balance of accuracy, precision, and F1 sco
 1. Kamei, Y., et al. (2013). *A Large-Scale Empirical Study of Just-In-Time Quality Assurance*. IEEE Transactions on Software Engineering.
 2. Ni, C., et al. (2022). *Just-In-Time Defect Prediction on JavaScript Projects: A Replication Study*. MSR 2022.
 3. Lundberg, S. M., & Lee, S.-I. (2017). *A Unified Approach to Interpreting Model Predictions*. NeurIPS.
-4. ApacheJIT Dataset: https://zenodo.org/records/5907002
-
----
-
-Birla Institute of Technology, Mesra
+4. ApacheJIT Dataset: <https://zenodo.org/records/5907002>
 
 ---
 
